@@ -15,6 +15,7 @@ welcome-sound:
 welcome-title:
   enabled: true
   title: '&6&lWelcome %player%!'
+  subtitle-enabled: true
   subtitle: '&e&lEnjoy your stay!'
   fade-in: 20
   stay: 40

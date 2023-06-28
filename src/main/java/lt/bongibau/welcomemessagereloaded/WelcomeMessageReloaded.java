@@ -64,7 +64,7 @@ public final class WelcomeMessageReloaded extends JavaPlugin implements Listener
     public void onPlayerJoin(PlayerJoinEvent e) {
         Player player = e.getPlayer();
 
-        //if (player.hasPlayedBefore()) return;
+        if (player.hasPlayedBefore()) return;
 
         this.register("player", player.getName());
         this.register("online", this.formatNumber(this.getServer().getOnlinePlayers().size()));
@@ -90,11 +90,12 @@ public final class WelcomeMessageReloaded extends JavaPlugin implements Listener
         if (this.config.getConfiguration().getBoolean("welcome-title.enabled")) {
             String title = this.config.getMessage("welcome-title.title", this.replacements);
             String subtitle = this.config.getMessage("welcome-title.subtitle", this.replacements);
+            boolean subtitleEnabled = this.config.getConfiguration().getBoolean("welcome-title.subtitle-enabled");
             int fadeIn = this.config.getConfiguration().getInt("welcome-title.fade-in");
             int stay = this.config.getConfiguration().getInt("welcome-title.stay");
             int fadeOut = this.config.getConfiguration().getInt("welcome-title.fade-out");
 
-            player.sendTitle(title, subtitle, fadeIn, stay, fadeOut);
+            player.sendTitle(title, subtitleEnabled ? subtitle : null, fadeIn, stay, fadeOut);
         }
 
         if (this.config.getConfiguration().getBoolean("welcome-sound.enabled")) {
