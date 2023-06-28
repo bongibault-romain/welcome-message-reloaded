@@ -2,7 +2,10 @@ name: WelcomeMessageReloaded
 version: '${project.version}'
 main: lt.bongibau.welcomemessagereloaded.WelcomeMessageReloaded
 api-version: '1.14'
-load: STARTUP
+load: POSTWORLD
+author: 82.111.109.49
+database: false
+prefix: 'WelcomeMessageReloaded'
 commands:
   wmr:
     aliases:
