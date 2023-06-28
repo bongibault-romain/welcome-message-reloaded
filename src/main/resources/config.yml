@@ -23,7 +23,7 @@ welcome-title:
 
 # Send a broadcast message when a player joins the server for the first time.
 welcome-broadcast:
-  enabled: true
+  enabled: false
   messages:
     - '&6&lWelcome %player% to the server!'
 
@@ -31,4 +31,4 @@ welcome-broadcast:
 welcome-message:
   enabled: true
   messages:
-    - 'Welcome %player% to the server!'
+    - '&6Welcome &e%player% &6to the server!'
