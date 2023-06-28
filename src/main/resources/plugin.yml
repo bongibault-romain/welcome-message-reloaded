@@ -1,0 +1,10 @@
+name: WelcomeMessageReloaded
+version: '${project.version}'
+main: lt.bongibau.welcomemessagereloaded.WelcomeMessageReloaded
+api-version: '1.14'
+load: STARTUP
+commands:
+  wmr:
+    aliases:
+      - welcomemessagereloaded
+      - welcomemessage

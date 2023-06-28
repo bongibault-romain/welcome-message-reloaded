@@ -1,0 +1,33 @@
+# Messages for plugin commands.
+messages:
+  no-permission: '&cYou do not have permission to use this command.'
+  config-reloaded: '&aConfiguration reloaded.'
+  command-not-found: '&cCommand not found.'
+
+# Play a sound when a player joins the server for the first time.
+welcome-sound:
+  enabled: true
+  sound: ENTITY_PLAYER_LEVELUP
+  volume: 1
+  pitch: 1
+
+# Send a title message when a player joins the server for the first time.
+welcome-title:
+  enabled: true
+  title: '&6&lWelcome %player%!'
+  subtitle: '&e&lEnjoy your stay!'
+  fade-in: 20
+  stay: 40
+  fade-out: 20
+
+# Send a broadcast message when a player joins the server for the first time.
+welcome-broadcast:
+  enabled: true
+  messages:
+    - '&6&lWelcome %player% to the server!'
+
+# Send a private chat message when a player joins the server for the first time.
+welcome-message:
+  enabled: true
+  messages:
+    - 'Welcome %player% to the server!'
