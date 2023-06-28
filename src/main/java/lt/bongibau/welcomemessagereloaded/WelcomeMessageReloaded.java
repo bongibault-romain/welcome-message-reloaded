@@ -1,6 +1,7 @@
 package lt.bongibau.welcomemessagereloaded;
 
 import lt.bongibau.welcomemessagereloaded.configuration.LYamlConfigurationFile;
+import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -66,47 +67,55 @@ public final class WelcomeMessageReloaded extends JavaPlugin implements Listener
 
         if (player.hasPlayedBefore()) return;
 
-        this.register("player", player.getName());
-        this.register("online", this.formatNumber(this.getServer().getOnlinePlayers().size()));
-        this.register("maxplayers", this.formatNumber(this.getServer().getMaxPlayers()));
-        this.register("version", this.getServer().getVersion());
+        /*
+         * The runnable ensures that the join message
+         * is sent before the welcome message.
+         */
+        Bukkit.getScheduler().runTaskLaterAsynchronously(this, (Runnable) () -> {
+            if (!player.isOnline()) return;
 
-        if (this.config.getConfiguration().getBoolean("welcome-message.enabled")) {
-            List<String> messages = this.config.getMessageList("welcome-message.messages", this.replacements);
+            this.register("player", player.getName());
+            this.register("online", this.formatNumber(this.getServer().getOnlinePlayers().size()));
+            this.register("maxplayers", this.formatNumber(this.getServer().getMaxPlayers()));
+            this.register("version", this.getServer().getVersion());
 
-            for (String message : messages) {
-                player.sendMessage(message);
+            if (this.config.getConfiguration().getBoolean("welcome-message.enabled")) {
+                List<String> messages = this.config.getMessageList("welcome-message.messages", this.replacements);
+
+                for (String message : messages) {
+                    player.sendMessage(message);
+                }
             }
-        }
 
-        if (this.config.getConfiguration().getBoolean("welcome-broadcast.enabled")) {
-            List<String> messages = this.config.getMessageList("welcome-broadcast.messages", this.replacements);
+            if (this.config.getConfiguration().getBoolean("welcome-broadcast.enabled")) {
+                List<String> messages = this.config.getMessageList("welcome-broadcast.messages", this.replacements);
 
-            for (String message : messages) {
-                this.getServer().broadcastMessage(message);
+                for (String message : messages) {
+                    this.getServer().broadcastMessage(message);
+                }
             }
-        }
 
-        if (this.config.getConfiguration().getBoolean("welcome-title.enabled")) {
-            String title = this.config.getMessage("welcome-title.title", this.replacements);
-            String subtitle = this.config.getMessage("welcome-title.subtitle", this.replacements);
-            boolean subtitleEnabled = this.config.getConfiguration().getBoolean("welcome-title.subtitle-enabled");
-            int fadeIn = this.config.getConfiguration().getInt("welcome-title.fade-in");
-            int stay = this.config.getConfiguration().getInt("welcome-title.stay");
-            int fadeOut = this.config.getConfiguration().getInt("welcome-title.fade-out");
+            if (this.config.getConfiguration().getBoolean("welcome-title.enabled")) {
+                String title = this.config.getMessage("welcome-title.title", this.replacements);
+                String subtitle = this.config.getMessage("welcome-title.subtitle", this.replacements);
+                boolean subtitleEnabled = this.config.getConfiguration().getBoolean("welcome-title.subtitle-enabled");
+                int fadeIn = this.config.getConfiguration().getInt("welcome-title.fade-in");
+                int stay = this.config.getConfiguration().getInt("welcome-title.stay");
+                int fadeOut = this.config.getConfiguration().getInt("welcome-title.fade-out");
 
-            player.sendTitle(title, subtitleEnabled ? subtitle : null, fadeIn, stay, fadeOut);
-        }
+                player.sendTitle(title, subtitleEnabled ? subtitle : null, fadeIn, stay, fadeOut);
+            }
 
-        if (this.config.getConfiguration().getBoolean("welcome-sound.enabled")) {
-            String soundString = this.config.getConfiguration().getString("welcome-sound.sound");
-            Sound sound = Sound.valueOf(soundString);
+            if (this.config.getConfiguration().getBoolean("welcome-sound.enabled")) {
+                String soundString = this.config.getConfiguration().getString("welcome-sound.sound");
+                Sound sound = Sound.valueOf(soundString);
 
-            double volume = this.config.getConfiguration().getDouble("welcome-sound.volume");
-            double pitch = this.config.getConfiguration().getDouble("welcome-sound.pitch");
+                double volume = this.config.getConfiguration().getDouble("welcome-sound.volume");
+                double pitch = this.config.getConfiguration().getDouble("welcome-sound.pitch");
 
-            player.playSound(player.getLocation(), sound, (float) volume, (float) pitch);
-        }
+                player.playSound(player.getLocation(), sound, (float) volume, (float) pitch);
+            }
+        }, 2L);
     }
 
     private String formatNumber(int number) {
