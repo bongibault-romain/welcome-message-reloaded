@@ -8,8 +8,8 @@ messages:
 welcome-sound:
   enabled: true
   sound: ENTITY_PLAYER_LEVELUP
-  volume: 1
-  pitch: 1
+  volume: 1.0
+  pitch: 1.0
 
 # Send a title message when a player joins the server for the first time.
 welcome-title:

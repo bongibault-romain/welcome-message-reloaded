@@ -102,10 +102,10 @@ public final class WelcomeMessageReloaded extends JavaPlugin implements Listener
             String soundString = this.config.getConfiguration().getString("welcome-sound.sound");
             Sound sound = Sound.valueOf(soundString);
 
-            float volume = this.config.getConfiguration().getInt("welcome-sound.volume");
-            float pitch = this.config.getConfiguration().getInt("welcome-sound.pitch");
+            double volume = this.config.getConfiguration().getDouble("welcome-sound.volume");
+            double pitch = this.config.getConfiguration().getDouble("welcome-sound.pitch");
 
-            player.playSound(player.getLocation(), sound, volume, pitch);
+            player.playSound(player.getLocation(), sound, (float) volume, (float) pitch);
         }
     }
 
