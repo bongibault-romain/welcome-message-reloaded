@@ -7,6 +7,7 @@ messages:
 # Play a sound when a player joins the server for the first time.
 welcome-sound:
   enabled: true
+  first-time-only: true
   sound: ENTITY_PLAYER_LEVELUP
   volume: 1.0
   pitch: 1.0
@@ -14,6 +15,7 @@ welcome-sound:
 # Send a title message when a player joins the server for the first time.
 welcome-title:
   enabled: true
+  first-time-only: false
   title: '&6&lWelcome %player%!'
   subtitle-enabled: true
   subtitle: '&e&lEnjoy your stay!'
@@ -24,11 +26,13 @@ welcome-title:
 # Send a broadcast message when a player joins the server for the first time.
 welcome-broadcast:
   enabled: false
+  first-time-only: true
   messages:
     - '&6&lWelcome %player% to the server!'
 
 # Send a private chat message when a player joins the server for the first time.
 welcome-message:
   enabled: true
+  first-time-only: true
   messages:
     - '&6Welcome &e%player% &6to the server!'

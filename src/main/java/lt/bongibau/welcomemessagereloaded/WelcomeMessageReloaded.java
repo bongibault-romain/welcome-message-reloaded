@@ -65,7 +65,14 @@ public final class WelcomeMessageReloaded extends JavaPlugin implements Listener
     public void onPlayerJoin(PlayerJoinEvent e) {
         Player player = e.getPlayer();
 
-        if (player.hasPlayedBefore()) return;
+        boolean welcomeMessageFirstTimeOnly = this.config.getConfiguration().getBoolean("welcome-message.first-time-only");
+        boolean welcomeBroadcastFirstTimeOnly = this.config.getConfiguration().getBoolean("welcome-broadcast.first-time-only");
+        boolean welcomeTitleFirstTimeOnly = this.config.getConfiguration().getBoolean("welcome-title.first-time-only");
+        boolean welcomeSoundFirstTimeOnly = this.config.getConfiguration().getBoolean("welcome-sound.first-time-only");
+
+        boolean hasPlayedBefore = player.hasPlayedBefore();
+
+        if (welcomeMessageFirstTimeOnly && welcomeBroadcastFirstTimeOnly && welcomeTitleFirstTimeOnly && welcomeSoundFirstTimeOnly && hasPlayedBefore) return;
 
         /*
          * The runnable ensures that the join message
@@ -79,7 +86,7 @@ public final class WelcomeMessageReloaded extends JavaPlugin implements Listener
             this.register("maxplayers", this.formatNumber(this.getServer().getMaxPlayers()));
             this.register("version", this.getServer().getVersion());
 
-            if (this.config.getConfiguration().getBoolean("welcome-message.enabled")) {
+            if (this.config.getConfiguration().getBoolean("welcome-message.enabled") && (!welcomeMessageFirstTimeOnly || !hasPlayedBefore)) {
                 List<String> messages = this.config.getMessageList("welcome-message.messages", this.replacements);
 
                 for (String message : messages) {
@@ -87,7 +94,7 @@ public final class WelcomeMessageReloaded extends JavaPlugin implements Listener
                 }
             }
 
-            if (this.config.getConfiguration().getBoolean("welcome-broadcast.enabled")) {
+            if (this.config.getConfiguration().getBoolean("welcome-broadcast.enabled") && (!welcomeBroadcastFirstTimeOnly || !hasPlayedBefore)) {
                 List<String> messages = this.config.getMessageList("welcome-broadcast.messages", this.replacements);
 
                 for (String message : messages) {
@@ -95,7 +102,7 @@ public final class WelcomeMessageReloaded extends JavaPlugin implements Listener
                 }
             }
 
-            if (this.config.getConfiguration().getBoolean("welcome-title.enabled")) {
+            if (this.config.getConfiguration().getBoolean("welcome-title.enabled") && (!welcomeTitleFirstTimeOnly || !hasPlayedBefore)) {
                 String title = this.config.getMessage("welcome-title.title", this.replacements);
                 String subtitle = this.config.getMessage("welcome-title.subtitle", this.replacements);
                 boolean subtitleEnabled = this.config.getConfiguration().getBoolean("welcome-title.subtitle-enabled");
@@ -106,7 +113,7 @@ public final class WelcomeMessageReloaded extends JavaPlugin implements Listener
                 player.sendTitle(title, subtitleEnabled ? subtitle : null, fadeIn, stay, fadeOut);
             }
 
-            if (this.config.getConfiguration().getBoolean("welcome-sound.enabled")) {
+            if (this.config.getConfiguration().getBoolean("welcome-sound.enabled") && (!welcomeSoundFirstTimeOnly || !hasPlayedBefore)) {
                 String soundString = this.config.getConfiguration().getString("welcome-sound.sound");
                 Sound sound = Sound.valueOf(soundString);
 
