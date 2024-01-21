@@ -18,6 +18,13 @@ welcome-sound:
     pitch: 1.0
     delay: 0
   # You can add more sounds here.
+  # another-example:
+  #   first-time-only: true
+  #   except-first-time: false
+  #   sound: ENTITY_PLAYER_LEVELUP
+  #   volume: 1.0
+  #   pitch: 1.0
+  #   delay: 0
 
 # Send a title message when a player joins the server for the first time.
 welcome-title:
@@ -32,6 +39,15 @@ welcome-title:
     fade-out: 20
     delay: 0
   # You can add more title messages here.
+  # another-example:
+  #   first-time-only: true
+  #   except-first-time: false
+  #   title: '&6&lWelcome %player_name%!'
+  #   subtitle: '&e&lEnjoy your stay!'
+  #   fade-in: 20
+  #   stay: 40
+  #   fade-out: 20
+  #   delay: 0
 
 # Send a broadcast message when a player joins the server for the first time.
 welcome-broadcast:
@@ -43,6 +59,12 @@ welcome-broadcast:
     messages:
       - '&6Welcome &e%player_name% &6to the server!'
   # You can add more broadcast messages here.
+  # another-example:
+  #  first-time-only: true
+  #  except-first-time: false
+  #  delay: 0
+  #  messages:
+  #    - '&6Welcome &e%player_name% &6to the server!'
 
 # Send a private chat message when a player joins the server for the first time.
 welcome-message:
@@ -53,4 +75,10 @@ welcome-message:
     delay: 0
     messages:
       - '&6Welcome &e%player_name% &6to the server!'
-    # You can add more private messages here.
+  # You can add more private messages here.
+  # another-example:
+  #  first-time-only: true
+  #  except-first-time: false
+  #  delay: 0
+  #  messages:
+  #    - '&6Welcome &e%player_name% &6to the server!'
