@@ -9,8 +9,7 @@ Put the plugin in your `plugins` folder and restart your server.
 
 ## Configuration
 
-The configuration is distinguished in five parts. The first allows to configure the messages used in the `/wmr` command, allowing to reload the configuration.
-
+The configuration is distinguished in five parts. The first allows to configure the messages used in the `/wmr` command, allowing to reload the configuration. The permission to use this command is `wmr.reload`.
 
 ```yaml
 # Messages for plugin commands.
@@ -20,19 +19,27 @@ messages:
   command-not-found: '&cCommand not found.'
 ```
 
-Then, the second allows you to configure whether a sound will be played when a player connects for the first time. The **list of sounds** available differs depending on the **version of Minecraft on your server**
+Then, the second allows you to configure whether a sound will be played when a player connects for the first time. The **list of sounds** available differs depending on the **version of Minecraft on your server**. You can add as much sound as you want, just copy the example, **change the name of the example** and change the name of the sound.
 
+You can also add a delay **in tick** before the sound is played.
 ```yaml
 # Play a sound when a player joins the server for the first time.
+# See https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Sound.html for a list of sounds.
 welcome-sound:
   enabled: true
-  first-time-only: true
-  sound: ENTITY_PLAYER_LEVELUP
-  volume: 1
-  pitch: 1
+  example-sound:
+    first-time-only: true
+    except-first-time: false
+    sound: ENTITY_PLAYER_LEVELUP
+    volume: 1.0
+    pitch: 1.0
+    delay: 0
+  # You can add more sounds here.
 ```
 
-In all the next categories, there is a list of keywords that can be used, such as `%player%`, and which will be replaced by their value. **You can find the list of these keywords at the bottom of the page**.
+In all the next categories, there is a list of keywords that can be used, such as `%player_name%`, and which will be replaced by their value. **You can find the list of these keywords at the bottom of the page**.
+
+As for the sounds, you can add as much message as you want in each category, just copy the example, **change the name of the example** and change the parameters.
 
 This part of the configuration allows you to display a title (and subtitle) to the player.
 
@@ -42,24 +49,33 @@ This part of the configuration allows you to display a title (and subtitle) to t
 # Send a title message when a player joins the server for the first time.
 welcome-title:
   enabled: true
-  first-time-only: false
-  title: '&6&lWelcome %player%!'
-  subtitle-enabled: true
-  subtitle: '&e&lEnjoy your stay!'
-  fade-in: 20
-  stay: 40
-  fade-out: 20
+  example-title:
+    first-time-only: true
+    except-first-time: false
+    title: '&6&lWelcome %player_name%!'
+    subtitle: '&e&lEnjoy your stay!'
+    fade-in: 20
+    stay: 40
+    fade-out: 20
+    delay: 0
+  # You can add more title messages here.
 ```
+
+If you want to remove the subtitle in game, just remove the `subtitle` line from the configuration.
 
 This part of the configuration allows you to send a message to all players.
 
 ```yaml
 # Send a broadcast message when a player joins the server for the first time.
 welcome-broadcast:
-  enabled: true
-  first-time-only: true
-  messages:
-    - '&6&lWelcome %player% to the server!'
+  enabled: false
+  example-broadcast:
+    first-time-only: true
+    except-first-time: false
+    delay: 0
+    messages:
+      - '&6Welcome &e%player_name% &6to the server!'
+  # You can add more broadcast messages here.
 ```
 
 This part of the configuration allows you to send a message only to the player who just logged in.
@@ -68,9 +84,13 @@ This part of the configuration allows you to send a message only to the player w
 # Send a private chat message when a player joins the server for the first time.
 welcome-message:
   enabled: true
-  first-time-only: true
-  messages:
-    - 'Welcome %player% to the server!'
+  example-message:
+    first-time-only: true
+    except-first-time: false
+    delay: 0
+    messages:
+      - '&6Welcome &e%player_name% &6to the server!'
+    # You can add more private messages here.
 
 ```
 
@@ -78,19 +98,8 @@ welcome-message:
 
 Wait for a player to connect to the server!
 
-## Keywords
+## Placeholders
 
-| Keyword      | Value                    |
-|--------------|--------------------------|
-| %player%     | Player Name              |
-| %online%     | Players Online Count     |
-| %maxplayers% | Maximum Number Of Player |
-| %version%    | Server Minecraft Version |
+You can use all placeholders of [PlaceholderAPI](https://www.spigotmc.org/resources/placeholderapi.6245/).
 
-### How to add a keyword ?
-
-If you are a developer and want to add your keywords, you just need to add the dependency plugin and call this function:
-
-```java
-WelcomeMessageReloaded.getInstance().register("keyword", "value");
-```
+You need your own custom plugin ? Join us on our [discord](https://discord.gg/RZRvHd8puA).
