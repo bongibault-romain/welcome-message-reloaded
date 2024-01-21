@@ -1,4 +1,4 @@
-package lt.bongibau.welcomemessagereloaded.configuration;
+package lt.bongibau.welcomemessagereloaded.message.configuration;
 
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;

@@ -6,6 +6,7 @@ load: POSTWORLD
 author: 82.111.109.49
 database: false
 prefix: 'WelcomeMessageReloaded'
+softdepend: [PlaceholderAPI]
 commands:
   wmr:
     aliases:

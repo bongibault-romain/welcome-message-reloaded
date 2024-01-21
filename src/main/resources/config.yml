@@ -5,34 +5,50 @@ messages:
   command-not-found: '&cCommand not found.'
 
 # Play a sound when a player joins the server for the first time.
+# See https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Sound.html for a list of sounds.
 welcome-sound:
   enabled: true
-  first-time-only: true
-  sound: ENTITY_PLAYER_LEVELUP
-  volume: 1.0
-  pitch: 1.0
+  example-sound:
+    first-time-only: true
+    except-first-time: false
+    sound: ENTITY_PLAYER_LEVELUP
+    volume: 1.0
+    pitch: 1.0
+    delay: 0
+  # You can add more sounds here.
 
 # Send a title message when a player joins the server for the first time.
 welcome-title:
   enabled: true
-  first-time-only: false
-  title: '&6&lWelcome %player%!'
-  subtitle-enabled: true
-  subtitle: '&e&lEnjoy your stay!'
-  fade-in: 20
-  stay: 40
-  fade-out: 20
+  example-title:
+    first-time-only: true
+    except-first-time: false
+    title: '&6&lWelcome %player_name%!'
+    subtitle: '&e&lEnjoy your stay!'
+    fade-in: 20
+    stay: 40
+    fade-out: 20
+    delay: 0
+  # You can add more title messages here.
 
 # Send a broadcast message when a player joins the server for the first time.
 welcome-broadcast:
   enabled: false
-  first-time-only: true
-  messages:
-    - '&6&lWelcome %player% to the server!'
+  example-broadcast:
+    first-time-only: true
+    except-first-time: false
+    delay: 0
+    messages:
+      - '&6Welcome &e%player_name% &6to the server!'
+  # You can add more broadcast messages here.
 
 # Send a private chat message when a player joins the server for the first time.
 welcome-message:
   enabled: true
-  first-time-only: true
-  messages:
-    - '&6Welcome &e%player% &6to the server!'
+  example-message:
+    first-time-only: true
+    except-first-time: false
+    delay: 0
+    messages:
+      - '&6Welcome &e%player_name% &6to the server!'
+    # You can add more private messages here.
