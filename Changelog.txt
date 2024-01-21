@@ -1,0 +1,1 @@
+- [+] Added the possibility to remove default join message.
