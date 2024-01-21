@@ -15,6 +15,10 @@ public class MessageListener implements Listener {
         List<IMessage> messages = MessageManager.getInstance().getMessages();
         boolean hasPlayedBefore = player.hasPlayedBefore();
 
+        if (MessageManager.getInstance().getConfiguration().getBoolean("disable-default-join-message")) {
+            e.setJoinMessage("");
+        }
+
         for (IMessage message : messages) {
             if (message.isFirstTimeOnly() && hasPlayedBefore) {
                 continue;

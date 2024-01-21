@@ -159,4 +159,8 @@ public class MessageConfiguration {
     public String getString(String path) {
         return this.configuration.getMessage(path);
     }
+
+    public boolean getBoolean(String path) {
+        return this.configuration.getConfiguration().getBoolean(path);
+    }
 }

@@ -4,6 +4,8 @@ messages:
   config-reloaded: '&aConfiguration reloaded.'
   command-not-found: '&cCommand not found.'
 
+disable-default-join-message: false
+
 # Play a sound when a player joins the server for the first time.
 # See https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Sound.html for a list of sounds.
 welcome-sound:
